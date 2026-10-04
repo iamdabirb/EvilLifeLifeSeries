@@ -65,9 +65,7 @@ public class TriviaBotModel extends EntityModel<TriviaBotRenderState> {
     private final ModelPart angry;
     private final ModelPart happy;
     private final ModelPart snail;
-    private final ModelPart beard;
     private final ModelPart hat;
-    private final ModelPart ball;
     private final ModelPart body;
     private final ModelPart righthand;
     private final ModelPart actualhand;
@@ -109,9 +107,7 @@ public class TriviaBotModel extends EntityModel<TriviaBotRenderState> {
         this.angry = this.expressions.getChild("angry");
         this.happy = this.expressions.getChild("happy");
         this.snail = this.expressions.getChild("snail");
-        this.beard = this.main.getChild("beard");
         this.hat = this.main.getChild("hat");
-        this.ball = this.hat.getChild("ball");
         this.body = this.triviabot.getChild("body");
         this.righthand = this.body.getChild("righthand");
         this.actualhand = this.righthand.getChild("actualhand");
@@ -159,6 +155,7 @@ public class TriviaBotModel extends EntityModel<TriviaBotRenderState> {
             snail.visible = false;
         }
     }
+
     public static LayerDefinition getTexturedModelData() {
         MeshDefinition modelData = new MeshDefinition();
         PartDefinition modelPartData = modelData.getRoot();
@@ -182,7 +179,8 @@ public class TriviaBotModel extends EntityModel<TriviaBotRenderState> {
                 .texOffs(0, 25).addBox(-6.0F, -10.6F, -3.5F, 12.0F, 0.0F, 8.0F, new CubeDeformation(0.0F))
                 .texOffs(0, 33).addBox(-6.02F, 0.4F, -3.48F, 12.0F, 0.0F, 8.0F, new CubeDeformation(0.0F))
                 .texOffs(24, 41).addBox(-6.0F, -10.6F, -3.5F, 0.0F, 11.0F, 8.0F, new CubeDeformation(0.0F))
-                .texOffs(40, 51).addBox(6.0F, -10.6F, -3.5F, 0.0F, 11.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 5.1F, 0.2F));
+                .texOffs(40, 51).addBox(6.0F, -10.6F, -3.5F, 0.0F, 11.0F, 8.0F, new CubeDeformation(0.0F))
+                .texOffs(44, 7).addBox(-6.0F, -3.0F, 3.0F, 12.0F, 4.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 5.1F, 0.2F));
 
         PartDefinition expressions = main.addOrReplaceChild("expressions", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, -3.005F));
 
@@ -216,15 +214,20 @@ public class TriviaBotModel extends EntityModel<TriviaBotRenderState> {
 
         PartDefinition snail = expressions.addOrReplaceChild("snail", CubeListBuilder.create().texOffs(56, 60).addBox(-5.0F, -4.5F, -1.3F, 10.0F, 9.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 3.005F));
 
-        PartDefinition beard = main.addOrReplaceChild("beard", CubeListBuilder.create().texOffs(52, 82).addBox(-3.0F, 0.5F, -4.62F, 6.0F, 8.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
+        // placeholder: the model constructor + animations still look up "beard", so it must exist
+        PartDefinition beard = main.addOrReplaceChild("beard", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
-        PartDefinition hat = main.addOrReplaceChild("hat", CubeListBuilder.create().texOffs(60, 84).addBox(-4.3F, -1.5F, -3.5F, 8.0F, 3.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(3.3F, -6.1F, 3.3F, -0.3927F, 0.0F, 0.0F));
+        PartDefinition hat = main.addOrReplaceChild("hat", CubeListBuilder.create().texOffs(60, 84).addBox(-4.3F, -1.5F, -3.5F, 8.0F, 2.0F, 8.0F, new CubeDeformation(0.0F))
+                .texOffs(70, 96).addBox(-5.3F, 0.5F, -4.5F, 10.0F, 1.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.3F, -6.5F, 0.3F, -0.1134F, 0.0F, 0.0F));
 
-        PartDefinition cube_r1 = hat.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(39, 93).addBox(-3.0F, -2.0F, -3.0F, 6.0F, 5.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.3F, -3.1F, 1.1F, -0.3927F, 0.0F, 0.0F));
+        PartDefinition cube_r1 = hat.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(59, 121).addBox(-2.0F, 0.0F, -1.0F, 2.0F, 3.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, -9.2F, 4.5F, -0.6068F, 0.0749F, 0.1074F));
 
-        PartDefinition ball = hat.addOrReplaceChild("ball", CubeListBuilder.create(), PartPose.offset(2.1929F, -3.5F, 4.0071F));
+        PartDefinition cube_r2 = hat.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(35, 106).addBox(-3.0F, -1.0F, -2.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.7F, -6.8F, 2.9F, -0.5236F, 0.0F, 0.0F));
 
-        PartDefinition cube_r2 = ball.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(63, 95).addBox(-2.0F, -2.0F, -2.0F, 4.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.8F, -0.2F, 2.8F, -0.7854F, 0.7854F, 0.0F));
+        PartDefinition cube_r3 = hat.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(39, 93).addBox(-3.0F, -2.0F, -3.0F, 6.0F, 5.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.3F, -3.1F, 1.1F, -0.3927F, 0.0F, 0.0F));
+
+        // placeholder: the model constructor + animations still look up "ball", so it must exist
+        PartDefinition ball = hat.addOrReplaceChild("ball", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         PartDefinition body = triviabot.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offset(0.0F, 23.1F, 0.7F));
 
@@ -255,9 +258,11 @@ public class TriviaBotModel extends EntityModel<TriviaBotRenderState> {
         PartDefinition lefthand = body.addOrReplaceChild("lefthand", CubeListBuilder.create().texOffs(8, 69).addBox(-1.9F, -1.5F, -2.0F, 3.0F, 10.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(8.1F, -17.4F, 0.0F));
 
         PartDefinition bag = lefthand.addOrReplaceChild("bag", CubeListBuilder.create().texOffs(12, 83).addBox(-0.3474F, -3.2093F, -7.6446F, 8.0F, 8.0F, 8.0F, new CubeDeformation(0.0F))
-                .texOffs(36, 84).addBox(1.6526F, -6.2093F, -5.6446F, 4.0F, 3.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.25F, 8.05F, 2.45F, 1.3809F, 0.0242F, 1.0667F));
+                .texOffs(34, 82).addBox(1.6526F, -6.2093F, -6.6446F, 4.0F, 3.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.25F, 8.05F, 2.45F, 1.3809F, 0.0242F, 1.0667F));
 
         PartDefinition torso = body.addOrReplaceChild("torso", CubeListBuilder.create().texOffs(40, 25).addBox(-5.998F, -5.3F, -3.002F, 12.0F, 5.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.002F, -12.1F, 0.002F));
+
+        PartDefinition cube_r4 = torso.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(-5, -5).addBox(-10.0F, -6.0F, -1.0F, 12.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-4.0F, 0.5F, 2.0F, 0.0F, 3.1416F, 0.0F));
 
         PartDefinition bottom = torso.addOrReplaceChild("bottom", CubeListBuilder.create().texOffs(36, 71).addBox(-4.998F, -0.3F, -2.502F, 10.0F, 2.0F, 0.0F, new CubeDeformation(0.0F))
                 .texOffs(72, 36).addBox(-4.998F, -0.3F, 2.498F, 10.0F, 2.0F, 0.0F, new CubeDeformation(0.0F))
@@ -265,7 +270,7 @@ public class TriviaBotModel extends EntityModel<TriviaBotRenderState> {
                 .texOffs(72, 42).addBox(5.002F, -0.3F, -2.502F, 0.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 
         PartDefinition bottomlarge = torso.addOrReplaceChild("bottomlarge", CubeListBuilder.create().texOffs(0, 83).addBox(-4.998F, -0.3F, -3.002F, 10.0F, 2.0F, 0.0F, new CubeDeformation(0.0F))
-                .texOffs(0, 85).addBox(-4.998F, -0.3F, 2.998F, 10.0F, 2.0F, 0.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 100).addBox(-4.998F, -0.3F, 2.998F, 10.0F, 4.0F, 0.0F, new CubeDeformation(0.0F))
                 .texOffs(0, 81).addBox(-4.998F, -0.3F, -3.002F, 0.0F, 2.0F, 6.0F, new CubeDeformation(0.0F))
                 .texOffs(0, 83).addBox(5.002F, -0.3F, -3.002F, 0.0F, 2.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.0F, 0.0F));
 

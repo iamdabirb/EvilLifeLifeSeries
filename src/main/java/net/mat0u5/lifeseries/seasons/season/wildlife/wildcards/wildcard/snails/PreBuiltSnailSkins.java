@@ -120,7 +120,7 @@ public class PreBuiltSnailSkins {
 			}
 		}
 		for (String skinName : prebuiltSkins) {
-			handler.copyBundledSingleFile("/resourcepacks/lifeseries/assets/lifeseries/textures/entity/snail/builtin/"+skinName.toLowerCase(Locale.ROOT)+".png", new File("./config/lifeseries/wildlife/snailskins/builtin/"+skinName+".png").toPath(), true);
+			handler.copyBundledSingleFile("/resourcepacks/lifeseries/assets/lifeseries/textures/entity/snail/builtin/" +skinName.toLowerCase(Locale.ROOT)+".png", new File("./config/lifeseries/wildlife/snailskins/builtin/"+skinName+".png").toPath(), true);
 		}
 		handler.copyBundledSingleFile("/resourcepacks/lifeseries/assets/lifeseries/textures/entity/snail/builtin/mat0u5.png", new File("./config/lifeseries/wildlife/snailskins/builtin/Mat0u5.png").toPath(), true);
 	}
